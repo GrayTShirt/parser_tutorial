@@ -2,9 +2,7 @@
 #include <stdio.h>
 #include "ex4.tab.h"
 %}
-
-%option bison-bridge
-
+%option nounput noinput
 %%
 [0-9]+      yylval=atoi(yytext); return NUMBER;
 heat        return TOKHEAT;

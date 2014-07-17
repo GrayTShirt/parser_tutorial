@@ -25,7 +25,6 @@ heat_switch:
 			printf("\tHeat turned on\n");
 		else
 			printf("\tHeat turned off\n");
-		printf("\tDolla 2: %d\n", $2);
 	}
 	;
 
@@ -48,7 +47,8 @@ int yywrap()
 	return 1;
 }
 
-void main()
+int main()
 {
 	yyparse();
+	return 0;
 }
