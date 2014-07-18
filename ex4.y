@@ -4,6 +4,9 @@
 #include <string.h>
 
 char *heater;
+int yylex(void);
+void yyerror(const char *str);
+
 %}
 
 %token TOKHEAT TOKHEATER TOKTARGET TOKTEMPERATURE
@@ -69,7 +72,6 @@ int yywrap()
 
 int main()
 {
-	int yydebug=1;
 	yyparse();
 	return 0;
 }
