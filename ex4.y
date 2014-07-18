@@ -3,9 +3,20 @@
 #include <stdio.h>
 #include <string.h>
 
+char *heater;
 %}
 
-%token NUMBER TOKHEAT STATE TOKTARGET TOKTEMPERATURE
+%token TOKHEAT TOKHEATER TOKTARGET TOKTEMPERATURE
+
+%union
+{
+	int   number;
+	char *string;
+}
+
+%token <number> STATE
+%token <number> NUMBER
+%token <string> WORD
 
 %%
 
@@ -15,6 +26,7 @@ commands: /* empty */
 
 command:
 	heat_switch
+	| heater_select
 	| target_set
 	;
 
@@ -28,10 +40,18 @@ heat_switch:
 	}
 	;
 
+heater_select:
+	TOKHEATER WORD
+	{
+		printf("\tSelected heater '%s'\n", $2);
+		heater = $2;
+	}
+	;
+
 target_set:
 	TOKTARGET TOKTEMPERATURE NUMBER
 	{
-		printf("\tTemperature set to %d\n", $3);
+		printf("\tHeater '%s' temperature set to %d\n", heater, $3);
 	}
 	;
 
@@ -49,6 +69,7 @@ int yywrap()
 
 int main()
 {
+	int yydebug=1;
 	yyparse();
 	return 0;
 }

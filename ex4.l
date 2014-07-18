@@ -4,11 +4,13 @@
 %}
 %option nounput noinput
 %%
-[0-9]+      yylval=atoi(yytext); return NUMBER;
+[0-9]+      yylval.number=atoi(yytext); return NUMBER;
 heat        return TOKHEAT;
-on|off      yylval=!strcmp(yytext,"on"); return STATE;
+heater      return TOKHEATER;
+on|off      yylval.number=!strcmp(yytext,"on"); return STATE;
 target      return TOKTARGET;
 temperature return TOKTEMPERATURE;
+[a-z0-9]+   yylval.string=strdup(yytext);return WORD;
 \n          /* ignore end of line */;
 [ \t]+      /* ignore whitespace */;
 %%
