@@ -11,13 +11,17 @@ See this [tutorial](http://ds9a.nl/lex-yacc/cvs/lex-yacc-howto.html) from [Bert 
 ### Building
 
 
-    make
-  
+    ~$ make
+
+
 ### Running
 
 
-    ./ex4
-    
+    ~$ ./ex4
+
+
 ### Cleaning Up
 
-    make clean
+    ~$ make clean
+
+
